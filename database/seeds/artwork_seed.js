@@ -29,6 +29,12 @@ exports.seed = function(knex, Promise) {
           url:
             "https://i.pinimg.com/originals/f4/45/66/f44566eb8143a37e70da89efe5d175ae.jpg",
           description: "Blade ponders his next move against the vampire empire"
+        },
+        {
+          author: "Lex Luthor",
+          url:
+            "https://www.supermanhomepage.com/images/solicitation-artwork/March-2012/JL7.jpg",
+          description: "The Justice League is a community of the best."
         }
       ]);
     });
