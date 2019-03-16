@@ -23,6 +23,12 @@ exports.seed = function(knex, Promise) {
           url:
             "https://cafart.r.worldssl.net/images/Category_40619/subcat_191964/UvD1nEUr_0108181126051gpadd.jpg",
           description: "Batman and the Joker entangled in eternal combat"
+        },
+        {
+          author: "Whistler",
+          url:
+            "https://i.pinimg.com/originals/f4/45/66/f44566eb8143a37e70da89efe5d175ae.jpg",
+          description: "Blade ponders his next move against the vampire empire"
         }
       ]);
     });
