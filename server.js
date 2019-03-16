@@ -57,7 +57,7 @@ app.post("/api/users", (req, res) => {
 
 //ROUTES FOR ALL THE ARTWORK GALLERY
 //gets request for all artwork images
-app.get("/", (req, res) => {
+app.get("/gallery", (req, res) => {
   return new Artwork()
     .fetchAll()
     .then(artwork => {
@@ -92,7 +92,29 @@ app.delete("/gallery/:id", (req, res) => {
   return new Artwork({ id })
     .destroy()
     .then(data => {
-      res.send("You have deleted image ID" + id);
+      res.send("You have deleted image ID " + id);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+//allows clients to edit via postman
+app.put("/gallery/:id", (req, res) => {
+  let newId = req.params.id;
+  let data = req.body;
+  let newAuthor = data.author;
+  let newUrl = data.url;
+  let newDescription = data.description;
+  return new Artwork.forge({ id: newId })
+    .save({
+      author: newAuthor,
+      url: newUrl,
+      description: newDescription
+    })
+    .then(data => {
+      res.send("You have updated image ID " + newId);
     })
     .catch(err => {
       console.log(err);
