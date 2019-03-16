@@ -68,6 +68,10 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get('/:id', function(req,res) {git
+
+});
+
 // start server
 app.listen(PORT, () => {
   console.log(`Server stated on port: ${PORT}`);
