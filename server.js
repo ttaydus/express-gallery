@@ -69,6 +69,16 @@ app.get("/gallery", (req, res) => {
     });
 });
 
+app.get('/:id', function(req,res) {
+  const galleryID = req.params.id;
+  return new Artwork()
+  .where({'id': galleryID})
+  .fetch()
+  .then(artwork => {
+    return res.json(artwork);
+  })
+});
+
 //allows clients to add new images to the table via postman
 app.post("/gallery", (req, res) => {
   let data = req.body;
