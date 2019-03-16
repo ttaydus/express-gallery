@@ -69,14 +69,14 @@ app.get("/gallery", (req, res) => {
     });
 });
 
-app.get('/:id', function(req,res) {
+app.get("/:id", function(req, res) {
   const galleryID = req.params.id;
   return new Artwork()
-  .where({'id': galleryID})
-  .fetch()
-  .then(artwork => {
-    return res.json(artwork);
-  })
+    .where({ id: galleryID })
+    .fetch()
+    .then(artwork => {
+      return res.json(artwork);
+    });
 });
 
 //allows clients to add new images to the table via postman
@@ -117,12 +117,13 @@ app.put("/gallery/:id", (req, res) => {
   let newAuthor = data.author;
   let newUrl = data.url;
   let newDescription = data.description;
-  return new Artwork.forge({ id: newId })
-    .save({
-      author: newAuthor,
-      url: newUrl,
-      description: newDescription
-    })
+  return new Artwork({
+    id: newId,
+    author: newAuthor,
+    url: newUrl,
+    description: newDescription
+  })
+    .save(null, { method: "update" })
     .then(data => {
       res.send("You have updated image ID " + newId);
     })
