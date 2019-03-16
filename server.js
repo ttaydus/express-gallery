@@ -75,10 +75,29 @@ app.post("/gallery", (req, res) => {
   let author = data.author;
   let url = data.url;
   let description = data.description;
-  return new Artwork({ author, url, description }).save().then(data => {
-    res.send("it worked");
-  });
-  res.send(newDescription);
+  return new Artwork({ author, url, description })
+    .save()
+    .then(data => {
+      res.send("it worked");
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+//allows clients to delete images via postman
+app.delete("/gallery/:id", (req, res) => {
+  let id = req.params.id;
+  return new Artwork({ id })
+    .destroy()
+    .then(data => {
+      res.send("You have deleted image ID" + id);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 });
 // start server
 app.listen(PORT, () => {
