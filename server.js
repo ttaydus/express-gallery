@@ -23,7 +23,7 @@ if (!PORT || !SESSION_SECRET || !REDIS_HOSTNAME) {
 
 // setup server middleware
 const app = express();
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.get("/api/smoke", (req, res) => {
@@ -55,6 +55,7 @@ app.post("/api/users", (req, res) => {
     });
 });
 
+//ROUTES FOR ALL THE ARTWORK GALLERY
 //gets request for all artwork images
 app.get("/", (req, res) => {
   return new Artwork()
@@ -68,6 +69,17 @@ app.get("/", (req, res) => {
     });
 });
 
+//allows clients to add new images to the table via postman
+app.post("/gallery", (req, res) => {
+  let data = req.body;
+  let author = data.author;
+  let url = data.url;
+  let description = data.description;
+  return new Artwork({ author, url, description }).save().then(data => {
+    res.send("it worked");
+  });
+  res.send(newDescription);
+});
 // start server
 app.listen(PORT, () => {
   console.log(`Server stated on port: ${PORT}`);
