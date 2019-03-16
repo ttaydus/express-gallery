@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const User = require("./database/models/User");
 const Artwork = require("./database/models/Artwork");
+const hbs = require('express-handlebars');
 
 // data vars
 const PORT = process.env.PORT;
@@ -24,6 +25,11 @@ if (!PORT || !SESSION_SECRET || !REDIS_HOSTNAME) {
 // setup server middleware
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.engine('hbs', hbs({
+  defaultLayout: 'main',
+  extname: '.hbs'
+}));
+app.set('view engine', 'hbs');
 
 // routes
 app.get("/api/smoke", (req, res) => {
