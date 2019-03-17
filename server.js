@@ -4,7 +4,7 @@ const User = require("./database/models/User");
 const Artwork = require("./database/models/Artwork");
 const hbs = require("express-handlebars");
 
-// data vars
+// data vars testing hello
 const PORT = process.env.PORT;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const REDIS_HOSTNAME = process.env.REDIS_HOSTNAME;
