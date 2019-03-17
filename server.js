@@ -70,7 +70,8 @@ app.get("/gallery", (req, res) => {
   return new Artwork()
     .fetchAll()
     .then(artwork => {
-      res.render("gallery");
+      console.log(artwork);
+      res.render("gallery", { artwork });
       // return res.json(artwork);
     })
     .catch(err => {
