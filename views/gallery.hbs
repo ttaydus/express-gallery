@@ -1,8 +1,10 @@
 <h1>The Underground Vault</h1>
 <ul>
-    {{#each artwork}}
+    {{#each array}}
     <li>
-        <p>{{author}}</p>
+        <img src="{{url}}" alt="">
+        <p>By {{author}}</p>
+        <p>{{description}}</p>
     </li>
     {{/each}}
 </ul>

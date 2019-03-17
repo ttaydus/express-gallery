@@ -69,9 +69,16 @@ app.post("/api/users", (req, res) => {
 app.get("/gallery", (req, res) => {
   return new Artwork()
     .fetchAll()
-    .then(artwork => {
-      console.log(artwork);
-      res.render("gallery", { artwork });
+    .then(data => {
+      let array = [];
+      // let a = data.models[0]._previousAttributes;
+      data.models.forEach(item => {
+        console.log(item._previousAttributes);
+        array.push(item._previousAttributes);
+      });
+
+      console.log(array);
+      res.render("gallery", { array });
       // return res.json(artwork);
     })
     .catch(err => {
@@ -128,6 +135,7 @@ app.put("/gallery/:id", (req, res) => {
   let newAuthor = data.author;
   let newUrl = data.url;
   let newDescription = data.description;
+  console.log(data);
   return new Artwork({
     id: newId,
     author: newAuthor,
@@ -139,7 +147,7 @@ app.put("/gallery/:id", (req, res) => {
       res.send("You have updated image ID " + newId);
     })
     .catch(err => {
-      console.log(err);
+      console.log("hi", err);
       res.sendStatus(500);
     });
 });
