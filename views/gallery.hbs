@@ -1,6 +1,15 @@
 <h1 id="hi">The Underground Vault</h1>
+<div id="firstContainer">
+    {{#with featured}}
+    <div id="featuredContainer">
+        <img src="{{url}}" alt="" onclick="window.location.href='/gallery/{{id}}'">
+        <p>By {{author}}</p>
+        <p>{{description}}</p>
+    </div>
+    {{/with}}
+</div>
 <ul>
-    {{#each array}}
+    {{#each listings}}
     <li>
         <div class="artContainer">
             <img src="{{url}}" alt="" onclick="window.location.href='/gallery/{{id}}'">

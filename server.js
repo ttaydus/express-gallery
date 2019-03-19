@@ -75,15 +75,21 @@ app.get("/gallery", (req, res) => {
   return new Artwork()
     .fetchAll()
     .then(data => {
+      let artObj = {};
       let array = [];
       // let a = data.models[0]._previousAttributes;
       data.models.forEach(item => {
-        console.log(item._previousAttributes);
+        // console.log(item._previousAttributes);
         array.push(item._previousAttributes);
       });
+      let notFeatured = array.filter(x => {
+        return array.indexOf(x) !== 0;
+      });
+      artObj.featured = array[0];
+      artObj.listings = notFeatured;
 
-      console.log(array);
-      res.render("gallery", { array });
+      console.log(artObj);
+      res.render("gallery", artObj);
       // return res.json(artwork);
     })
     .catch(err => {
