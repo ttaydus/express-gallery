@@ -24,7 +24,9 @@ if (!PORT || !SESSION_SECRET || !REDIS_HOSTNAME) {
 
 // setup server middleware
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.engine(
   "hbs",
   hbs({
@@ -33,6 +35,9 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
+
+app.use(express.static(__dirname + "/public"));
+app.use("/gallery", express.static("public"));
 
 // routes
 app.get("/api/smoke", (req, res) => {
