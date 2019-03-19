@@ -98,6 +98,20 @@ app.get("/gallery", (req, res) => {
     });
 });
 
+//loads page with form to post new art
+app.get("/gallery/new", (req, res) => {
+  console.log("hello");
+  res.render("newArt");
+});
+
+//loads error posting page
+app.get("/gallery/errorPosting", (req, res) => {
+  res.render("errorPosting");
+});
+
+//
+
+//loads specific art page
 app.get("/gallery/:id", function(req, res) {
   const galleryID = req.params.id;
   return new Artwork()
@@ -108,21 +122,26 @@ app.get("/gallery/:id", function(req, res) {
     });
 });
 
-//allows clients to add new images to the table via postman
+//allows clients to add new images to the table via browser
 app.post("/gallery", (req, res) => {
   let data = req.body;
   let author = data.author;
   let url = data.url;
   let description = data.description;
-  return new Artwork({ author, url, description })
-    .save()
-    .then(data => {
-      res.send("it worked");
-    })
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
+  if (author === "" || description === "" || url === "") {
+    res.redirect("/gallery/errorPosting");
+  } else {
+    return new Artwork({ author, url, description })
+      .save()
+      .then(data => {
+        res.redirect("/gallery");
+        // res.send("it worked");
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
 });
 
 //allows clients to delete images via postman
