@@ -92,7 +92,7 @@ app.get("/gallery", (req, res) => {
     });
 });
 
-app.get("/:id", function(req, res) {
+app.get("/gallery/:id", function(req, res) {
   const galleryID = req.params.id;
   return new Artwork()
     .where({ id: galleryID })
