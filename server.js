@@ -24,7 +24,9 @@ if (!PORT || !SESSION_SECRET || !REDIS_HOSTNAME) {
 
 // setup server middleware
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.engine(
   "hbs",
   hbs({
@@ -33,6 +35,9 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
+
+app.use(express.static(__dirname + "/public"));
+app.use("/gallery", express.static("public"));
 
 // routes
 app.get("/api/smoke", (req, res) => {
@@ -70,15 +75,21 @@ app.get("/gallery", (req, res) => {
   return new Artwork()
     .fetchAll()
     .then(data => {
+      let artObj = {};
       let array = [];
       // let a = data.models[0]._previousAttributes;
       data.models.forEach(item => {
-        console.log(item._previousAttributes);
+        // console.log(item._previousAttributes);
         array.push(item._previousAttributes);
       });
+      let notFeatured = array.filter(x => {
+        return array.indexOf(x) !== 0;
+      });
+      artObj.featured = array[0];
+      artObj.listings = notFeatured;
 
-      console.log(array);
-      res.render("gallery", { array });
+      console.log(artObj);
+      res.render("gallery", artObj);
       // return res.json(artwork);
     })
     .catch(err => {
@@ -87,7 +98,7 @@ app.get("/gallery", (req, res) => {
     });
 });
 
-app.get("/:id", function(req, res) {
+app.get("/gallery/:id", function(req, res) {
   const galleryID = req.params.id;
   return new Artwork()
     .where({ id: galleryID })
