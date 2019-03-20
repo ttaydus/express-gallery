@@ -1,3 +1,4 @@
+<h1 class="headers">Are You Sure You Want to Delete This?</h1>
 <div class="imageContainer">
     <img src="{{url}}" alt="">
 </div>
@@ -6,21 +7,16 @@
         By {{author}}
     </div>
 </div>
-<div id="descriptionContainer">
-    <div id="description">
-        {{description}}
-    </div>
-</div>
-
 <div class="buttonsContainer">
+    <form action="/gallery/{{id}}/delete" method="POST">
+        <button>
+            Yes, Delete This Art
+        </button>
+    </form>
     <form action="/gallery/{{id}}/edit" method='GET'>
         <button>
-            Edit This Page
-        </button>
-    </form>
-    <form action="/gallery" method="GET">
-        <button>
-            Go Back to Gallery
+            Return To Edit Page
         </button>
     </form>
 </div>
+<a href="/gallery">Go Back To Gallery</a>
