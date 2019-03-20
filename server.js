@@ -112,15 +112,27 @@ app.get("/gallery/errorPosting", (req, res) => {
 //
 
 //loads specific art page
-app.get("/gallery/:id", function(req, res) {
-  const galleryID = req.params.id;
+app.get("/gallery/:id", (req, res) => {
+  let galleryID = req.params.id;
   return new Artwork()
     .where({ id: galleryID })
     .fetch()
     .then(artwork => {
-      return res.json(artwork);
+      let artObj = artwork._previousAttributes;
+      return res.render("art", artObj);
     });
 });
+
+//loads specific art page
+// app.get("/gallery/:id", function(req, res) {
+//   const galleryID = req.params.id;
+//   return new Artwork()
+//     .where({ id: galleryID })
+//     .fetch()
+//     .then(artwork => {
+//       return res.json(artwork);
+//     });
+// });
 
 //loads editing form
 app.get("/gallery/:id/edit", (req, res) => {
