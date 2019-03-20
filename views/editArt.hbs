@@ -1,0 +1,34 @@
+<h1 class="headers">
+    You are now Editing Art Id : {{id}}
+</h1>
+<div id="editImageContainer">
+    <img src="{{url}}" alt="">
+</div>
+<div id="editFormContainer">
+    <form action="/gallery/{{id}}/edit" method='POST'>
+        <div class="editDiv">
+            <label for="author">
+                Author
+            </label>
+            <input type="text" name="author" id="author" placeholder="{{author}}">
+        </div>
+        <div class="editDiv">
+            <label for="url">Image Url</label>
+            <input type="text" name="url" id="url" placeholder="{{url}}">
+        </div>
+        <div class="editDiv">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" placeholder="{{description}}">
+        </div>
+        <div class="editD">
+            <button id="editArtButton" type="submit">
+                Finshed Editing
+            </button>
+        </div>
+    </form>
+</div>
+<div id="deleteRoute">
+    <form action="/gallery/{{id}}/delete" method="GET">
+        <button type='submit'>Delete this Page</button>
+    </form>
+</div>
