@@ -1,0 +1,32 @@
+<h1 class="headers">Add New Art </h1>
+<form action="/gallery" method="POST">
+    <div class="postDiv">
+        <label for="author">
+            Author
+        </label>
+        <input type="text" name="author" id="author">
+    </div>
+    <div class="postDiv">
+        <label for="url">
+            Image Url
+        </label>
+        <input type="text" name="url" id="url">
+    </div>
+    <div class="postDiv">
+        <label for="description">
+            Description
+        </label>
+        <input type="text" name="description" id="description">
+    </div>
+    <div class="postDiv">
+        <button id="postArtButton" type="submit">
+            Submit New Art
+        </button>
+    </div>
+</form>
+
+<div id="goHomeContainer">
+    <form action="/gallery" method="GET">
+        <button type="submit">Go Back to Gallery</button>
+    </form>
+</div>

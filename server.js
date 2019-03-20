@@ -98,6 +98,20 @@ app.get("/gallery", (req, res) => {
     });
 });
 
+//loads page with form to post new art
+app.get("/gallery/new", (req, res) => {
+  console.log("hello");
+  res.render("newArt");
+});
+
+//loads error posting page
+app.get("/gallery/errorPosting", (req, res) => {
+  res.render("errorPosting");
+});
+
+//
+
+//loads specific art page
 app.get("/gallery/:id", function(req, res) {
   const galleryID = req.params.id;
   return new Artwork()
@@ -108,21 +122,75 @@ app.get("/gallery/:id", function(req, res) {
     });
 });
 
-//allows clients to add new images to the table via postman
+//loads editing form
+app.get("/gallery/:id/edit", (req, res) => {
+  let galleryID = req.params.id;
+  return new Artwork()
+    .where({ id: galleryID })
+    .fetch()
+    .then(artwork => {
+      let artObj = artwork._previousAttributes;
+      console.log(artObj);
+      return res.render("editArt", artObj);
+    });
+});
+
+//loads error editing page
+app.get("/gallery/:id/edit/error", (req, res) => {
+  let galleryID = req.params.id;
+  return new Artwork()
+    .where({ id: galleryID })
+    .fetch()
+    .then(artwork => {
+      let artObj = artwork._previousAttributes;
+      res.render("errorEditing", artObj);
+    });
+});
+//allows clients to add new images to the table via browser
 app.post("/gallery", (req, res) => {
   let data = req.body;
   let author = data.author;
   let url = data.url;
   let description = data.description;
-  return new Artwork({ author, url, description })
-    .save()
-    .then(data => {
-      res.send("it worked");
+  if (author === "" || description === "" || url === "") {
+    res.redirect("/gallery/errorPosting");
+  } else {
+    return new Artwork({ author, url, description })
+      .save()
+      .then(data => {
+        res.redirect("/gallery");
+        // res.send("it worked");
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
+});
+
+//allows clients to edit art via browser
+app.post("/gallery/:id/edit", (req, res) => {
+  let newId = req.params.id;
+  let data = req.body;
+  let newAuthor = data.author;
+  let newUrl = data.url;
+  let newDescription = data.description;
+  if (newAuthor === "" || newUrl === "" || newDescription === "") {
+    res.redirect(`/gallery/${newId}/edit/error`);
+  } else {
+    return new Artwork({
+      id: newId,
+      author: newAuthor,
+      url: newUrl,
+      description: newDescription
     })
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
+      .save()
+      .then(res.redirect("/gallery"))
+      .catch(err => {
+        console.log("hi", err);
+        res.sendStatus(500);
+      });
+  }
 });
 
 //allows clients to delete images via postman
@@ -147,6 +215,7 @@ app.put("/gallery/:id", (req, res) => {
   let newUrl = data.url;
   let newDescription = data.description;
   console.log(data);
+
   return new Artwork({
     id: newId,
     author: newAuthor,
