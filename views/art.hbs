@@ -1,0 +1,26 @@
+<div class="imageContainer">
+    <img src="{{url}}" alt="">
+</div>
+<div class="authorContainer">
+    <div class="author">
+        By {{author}}
+    </div>
+</div>
+<div id="descriptionContainer">
+    <div id="description">
+        {{description}}
+    </div>
+</div>
+
+<div class="buttonsContainer">
+    <form action="/gallery/{{id}}/edit" method='GET'>
+        <button>
+            Edit This Page
+        </button>
+    </form>
+    <form action="/gallery" method="GET">
+        <button>
+            Go Back to Gallery
+        </button>
+    </form>
+</div>

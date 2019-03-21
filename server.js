@@ -112,15 +112,27 @@ app.get("/gallery/errorPosting", (req, res) => {
 //
 
 //loads specific art page
-app.get("/gallery/:id", function(req, res) {
-  const galleryID = req.params.id;
+app.get("/gallery/:id", (req, res) => {
+  let galleryID = req.params.id;
   return new Artwork()
     .where({ id: galleryID })
     .fetch()
     .then(artwork => {
-      return res.json(artwork);
+      let artObj = artwork._previousAttributes;
+      return res.render("art", artObj);
     });
 });
+
+//loads specific art page
+// app.get("/gallery/:id", function(req, res) {
+//   const galleryID = req.params.id;
+//   return new Artwork()
+//     .where({ id: galleryID })
+//     .fetch()
+//     .then(artwork => {
+//       return res.json(artwork);
+//     });
+// });
 
 //loads editing form
 app.get("/gallery/:id/edit", (req, res) => {
@@ -144,6 +156,34 @@ app.get("/gallery/:id/edit/error", (req, res) => {
     .then(artwork => {
       let artObj = artwork._previousAttributes;
       res.render("errorEditing", artObj);
+    });
+});
+
+//loads delete form page
+app.get("/gallery/:id/delete", (req, res) => {
+  let galleryID = req.params.id;
+  return new Artwork()
+    .where({ id: galleryID })
+    .fetch()
+    .then(artwork => {
+      let artObj = artwork._previousAttributes;
+      res.render("deleteArt", artObj);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+//allows clients to delete art via browser
+app.post("/gallery/:id/delete", (req, res) => {
+  let id = req.params.id;
+  return new Artwork({ id })
+    .destroy()
+    .then(res.redirect("/gallery"))
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
     });
 });
 //allows clients to add new images to the table via browser

@@ -1,6 +1,16 @@
 #hi {
   background-color: red;
 }
-/* html {
-  background-color: red;
-} */
+
+#featured {
+  max-width: 500px;
+  height: auto;
+}
+
+body {
+  /* background-image: url("https://goldwheel.us/wp-content/uploads/2018/11/CDR-background-1200x624-1200x500.png"); */
+  /* background-size: cover; */
+  /* height: 100%; */
+  /* overflow: hidden; */
+  /* background-color: */
+}
