@@ -7,6 +7,10 @@
   height: auto;
 }
 
+#featuredContainer {
+  color: blue;
+}
+
 body {
   /* background-image: url("https://goldwheel.us/wp-content/uploads/2018/11/CDR-background-1200x624-1200x500.png"); */
   /* background-size: cover; */
