@@ -6,11 +6,11 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("artwork").insert([
         {
-          author: "Dr.Doom",
+          author: "Frank Miller",
           url:
-            "https://cafart.r.worldssl.net/images/Category_17127/subcat_49289/Felipe_FF.JPG",
+            "https://i2.wp.com/biffbampop.com/wp-content/uploads/2018/04/xerxes-1.jpg?resize=1080%2C608&ssl=1",
           description:
-            "The Fantastic Four with Dr.Doom, Silver Surfer, and Galactus "
+            "King Leonidas and Xerxes portraying the final stand of Spartans against the Persian Empire"
         },
         {
           author: "Peter Parker",
@@ -31,10 +31,11 @@ exports.seed = function(knex, Promise) {
           description: "Blade ponders his next move against the vampire empire"
         },
         {
-          author: "Lex Luthor",
+          author: "Gohan",
           url:
-            "https://www.supermanhomepage.com/images/solicitation-artwork/March-2012/JL7.jpg",
-          description: "The Justice League is a community of the best."
+            "https://i.pinimg.com/236x/19/b4/d8/19b4d82c81f13ab03c1c67737aa4f910--dragon-art-art-paintings.jpg",
+          description:
+            "After arriving on earth, Prince Vegeta and Napa scan the landscape for signs of powerful life forces."
         }
       ]);
     });
