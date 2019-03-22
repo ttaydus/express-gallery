@@ -36,6 +36,11 @@ exports.seed = function(knex, Promise) {
             "https://i.pinimg.com/236x/19/b4/d8/19b4d82c81f13ab03c1c67737aa4f910--dragon-art-art-paintings.jpg",
           description:
             "After arriving on earth, Prince Vegeta and Napa scan the landscape for signs of powerful life forces."
+        },
+        {
+          author: "Iron Man",
+          url: "https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/Art-Deco-Iron-Man-Rodolfo-Reyes.jpg",
+          description: "Blast off"
         }
       ]);
     });
