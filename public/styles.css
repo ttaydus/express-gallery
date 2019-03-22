@@ -7,8 +7,21 @@
   height: auto;
 }
 
-#featuredContainer {
-  color: blue;
+#wholePage {
+  display: flex;
+  flex-direction: column;
+}
+
+.galleryContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: green;
+}
+
+.images{
+  max-width: 100px;
+  max-height: 100px;
 }
 
 body {

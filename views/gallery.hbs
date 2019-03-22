@@ -1,3 +1,4 @@
+<div id="wholePage">
 <div id="firstContainer">
     {{#with featured}}
     <div id="featuredContainer">
@@ -7,21 +8,25 @@
     </div>
     {{/with}}
 </div>
-<ul>
+
+
+<ul class="galleryContainer">
     {{#each listings}}
     <li>
         <div class="artContainer">
-            <img src="{{url}}" alt="" onclick="window.location.href='/gallery/{{id}}'">
+            <img class="images" src="{{url}}" alt="" onclick="window.location.href='/gallery/{{id}}'">
             <p>By {{author}}</p>
             <p>{{description}}</p>
         </div>
     </li>
     {{/each}}
 </ul>
+
 <div class="newContainer">
     <form action="/gallery/new" method="GET">
         <button type="submit">
             Post New Artwork
         </button>
     </form>
+</div>
 </div>
