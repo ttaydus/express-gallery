@@ -37,8 +37,9 @@ app.engine(
 app.set("view engine", "hbs");
 
 app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/photos"));
 app.use("/gallery", express.static("public"));
-
+// app.use("/gallery", express.static("/photos"));
 // routes
 app.get("/api/smoke", (req, res) => {
   res.json({ smoke: "test" });

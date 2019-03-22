@@ -1,5 +1,20 @@
+#banner {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgb(110, 104, 104)
+  );
+  border: solid black 1px;
+}
 #hi {
-  background-color: red;
+  font-family: "Bangers", cursive;
+  font-size: 40px;
+}
+
+#banner {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
 }
 
 #featured {
