@@ -4,6 +4,17 @@ const User = require("./database/models/User");
 const Artwork = require("./database/models/Artwork");
 const hbs = require("express-handlebars");
 
+const musashi =
+  "https://media.proprofs.com/images/QM/user_images/2169923/1516426900.jpg";
+
+//authorization variables
+const session = require("express-session");
+const RedisStore = require("connect-redis")(session);
+const passport = require("passport");
+
+const Tasks = require("./database/models/Tasks");
+const AuthRoutes = require("./routes/auth");
+
 // data vars testing hello
 const PORT = process.env.PORT;
 const SESSION_SECRET = process.env.SESSION_SECRET;
@@ -27,6 +38,26 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//more middleware for authorization stuff
+app.use(
+  session({
+    store: new RedisStore(),
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/", (req, res) => {
+  res.send("fucking working");
+});
+
+//connects server.js to auth.js through router
+app.use("/api", AuthRoutes);
+
 app.engine(
   "hbs",
   hbs({
@@ -49,7 +80,7 @@ app.get("/api/users", (req, res) => {
   return new User()
     .fetchAll()
     .then(users => {
-      return res.json(users);
+      return res.json(users.serialize());
     })
     .catch(err => {
       console.log(err);
@@ -58,17 +89,89 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users", (req, res) => {
-  const username = req.body.username;
-  return new User({ username })
+  const email = req.body.email;
+  const password = req.body.password;
+  return new User({ email, password })
     .save()
     .then(user => {
       return res.json({ success: true });
     })
     .catch(err => {
-      console.log(err);
+      console.log("hi", err);
       res.sendStatus(500);
     });
 });
+
+//Routes for Authrorization
+//authorization requests
+
+app.get("/api/users/:user_id", (req, res) => {
+  let id = req.params.user_id;
+  return new User()
+    .where({ id })
+    .fetchAll()
+    .then(user => {
+      console.log(user);
+      res.json(user.serialize());
+    })
+    .catch(err => {
+      console.log("hi");
+      res.json(err);
+    });
+});
+
+//create task by user id
+// app.post("/api/users/:user_id/tasks/new", (req, res) => {
+//   const { user_id } = req.params;
+//   const payload = {
+//     name: req.body.name
+//   };
+//   Tasks.forge(payload)
+//     .save()
+//     .then(result => {
+//       res.json(result);
+//     })
+//     .catch(err => {
+//       console.log("error", err);
+//       res.json(err);
+//     });
+// });
+
+//upadate task by task id
+// app.put("/api/tasks/:task_id/edit", (req, res) => {
+//   const { task_id } = req.params;
+
+//   const payload = {
+//     name: req.body.name,
+//     is_complete: req.body.is_complete
+//   };
+//   Tasks.where({ task_id })
+//     .fetch()
+//     .then(task => {
+//       return task.save(payload);
+//     })
+//     .then(result => {
+//       console.log("result", result);
+//       res.json(result);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
+
+//delete task by task id
+// app.delete("/api/tasks/:task_id/delete", (req, res) => {
+//   const { task_id } = req.params;
+
+//   Tasks.where({ task_id })
+//     .destroy()
+//     .then(result => {
+//       res.json(result);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
 
 //ROUTES FOR ALL THE ARTWORK GALLERY
 //gets request for all artwork images
