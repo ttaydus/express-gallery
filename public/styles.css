@@ -23,7 +23,7 @@
   justify-content: space-around;
   margin-bottom: 80px;
   border: none;
-  margin-top: -100px;
+  /* margin-top: -100px; */
 }
 .banner {
   /* background-image: linear-gradient(

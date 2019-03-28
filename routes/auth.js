@@ -105,6 +105,7 @@ router.get("/auth/sercret", isAuthenticated, (req, res) => {
   res.send("YOU HAVE FOUND DA SEKRET");
 });
 
+//routes for gallery
 router.post("/gallery", isAuthenticated, (req, res) => {
   let data = req.body;
   let author = data.author;
@@ -124,6 +125,17 @@ router.post("/gallery", isAuthenticated, (req, res) => {
         res.sendStatus(500);
       });
   }
+});
+
+router.post("/gallery/:id/delete", isAuthenticated, (req, res) => {
+  let id = req.params.id;
+  return new Artwork({ id })
+    .destroy()
+    .then(res.redirect("/gallery"))
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 });
 
 function isAuthenticated(req, res, done) {
