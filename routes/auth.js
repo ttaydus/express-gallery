@@ -138,6 +138,30 @@ router.post("/gallery/:id/delete", isAuthenticated, (req, res) => {
     });
 });
 
+router.post("/gallery/:id/edit", isAuthenticated, (req, res) => {
+  let newId = req.params.id;
+  let data = req.body;
+  let newAuthor = data.author;
+  let newUrl = data.url;
+  let newDescription = data.description;
+  if (newAuthor === "" || newUrl === "" || newDescription === "") {
+    res.redirect(`/gallery/${newId}/edit/error`);
+  } else {
+    return new Artwork({
+      id: newId,
+      author: newAuthor,
+      url: newUrl,
+      description: newDescription
+    })
+      .save()
+      .then(res.redirect("/gallery"))
+      .catch(err => {
+        console.log("hi", err);
+        res.sendStatus(500);
+      });
+  }
+});
+
 function isAuthenticated(req, res, done) {
   if (req.isAuthenticated()) {
     done();
