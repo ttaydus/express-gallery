@@ -283,16 +283,16 @@ app.get("/gallery/:id/delete", (req, res) => {
 });
 
 //allows clients to delete art via browser
-app.post("/gallery/:id/delete", (req, res) => {
-  let id = req.params.id;
-  return new Artwork({ id })
-    .destroy()
-    .then(res.redirect("/gallery"))
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
-});
+// app.post("/gallery/:id/delete", (req, res) => {
+//   let id = req.params.id;
+//   return new Artwork({ id })
+//     .destroy()
+//     .then(res.redirect("/gallery"))
+//     .catch(err => {
+//       console.log(err);
+//       res.sendStatus(500);
+//     });
+// });
 //allows clients to add new images to the table via browser
 app.post("/gallery", (req, res) => {
   let data = req.body;
