@@ -1,14 +1,23 @@
-#banner {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    rgb(110, 104, 104)
-  );
-  border: solid black 1px;
+.banner {
+  /* background-image: linear-gradient(
+    to left,
+    rgba(255, 212, 119, 0.7),
+    rgb(221, 172, 9)
+  ); */
+  height: 0;
+  margin-top: -100px;
+  /* display: flex;
+  flex-flow: column; */
 }
-#hi {
-  font-family: "Bangers", cursive;
-  font-size: 40px;
+
+.hi {
+  /* font-family: "Bangers", cursive; */
+  font-family: "Kaushan Script", cursive;
+
+  color: rgb(218, 151, 9);
+  font-size: 50px;
+  /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; */
 }
 
 #banner {
@@ -34,7 +43,7 @@
   background-color: green;
 }
 
-.images{
+.images {
   max-width: 100px;
   max-height: 100px;
 }
@@ -45,4 +54,152 @@ body {
   /* height: 100%; */
   /* overflow: hidden; */
   /* background-color: */
+}
+
+/* register form css */
+#africanWarrior {
+  border: solid black 1px;
+  max-width: 400px;
+  min-width: 400px;
+  height: auto;
+  border-top: none;
+  border-right: none;
+  overflow: hidden;
+  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45));
+  opacity: 0.75;
+}
+
+#register {
+  display: flex;
+  flex-flow: row;
+  font-family: "Germania One", cursive;
+
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/10/13/479591/9685230f10ccaaa2dc0836300fa1df2a.jpg");
+  overflow: hidden;
+}
+#regDiv {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  flex-grow: 2;
+
+  justify-content: space-around;
+}
+
+#regForm {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.form {
+  /* border: solid black 1px; */
+  align-self: center;
+  /* background-color: red; */
+  height: 240px;
+  /* margin-top: -150px; */
+  /* border-top: solid black 2px;
+    border-bottom: solid black 2px; */
+
+  padding: 25px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(46, 2, 207, 0.5),
+    rgb(204, 204, 204, 0.1)
+  );
+  display: flex;
+  flex-flow: column;
+  align-items: space-around;
+}
+
+#registerForm {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 180px;
+  align-items: center;
+}
+#email,
+#password {
+  font-size: 30px;
+  text-align: center;
+  border-radius: 1px;
+  /* font-family: "Roboto Condensed", sans-serif; */
+  font-family: "Kaushan Script", cursive;
+  /* font-family: "Noto Sans", sans-serif; */
+}
+
+#registerButton {
+  font-size: 25px;
+
+  background-image: linear-gradient(
+    to left,
+    rgb(219, 219, 219),
+    rgb(170, 170, 170)
+  );
+  font-family: "Righteous", cursive;
+}
+
+/* login page stuff */
+#loginPage {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background: url("http://sfwallpaper.com/images/new-zealand-desktop-wallpaper-5.jpg");
+}
+#homeBanner {
+  margin-top: -20px;
+}
+
+#musashi {
+  max-height: 320px;
+  width: auto;
+  opacity: 0.7;
+}
+
+#loginHi {
+  font-size: 35px;
+}
+
+#log {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+.logEntryBox {
+  margin-bottom: 5px;
+}
+.boo {
+  background-image: linear-gradient(
+    to left,
+    rgb(214, 214, 214),
+    rgb(245, 245, 245)
+  );
+}
+
+#email2,
+#password2 {
+  font-family: "Kaushan Script", cursive;
+  text-align: center;
+  font-size: 35px;
+}
+
+.loginButtons {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+#loginButton,
+#getReg {
+  font-size: 20px;
+  border-radius: 1px;
+
+  margin-bottom: 5px;
+  background-image: linear-gradient(
+    to right,
+    rgb(172, 172, 172),
+    rgb(245, 245, 245)
+  );
+  font-family: "Righteous", cursive;
 }

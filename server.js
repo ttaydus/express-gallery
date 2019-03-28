@@ -51,10 +51,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
-  res.send("fucking working");
-});
-
 //connects server.js to auth.js through router
 app.use("/api", AuthRoutes);
 
@@ -70,10 +66,17 @@ app.set("view engine", "hbs");
 app.use(express.static(__dirname + "/public"));
 // app.use(express.static(__dirname + "/photos"));
 app.use("/gallery", express.static("public"));
+app.use("/api/auth", express.static("public"));
+
 // app.use("/gallery", express.static("/photos"));
 // routes
 app.get("/api/smoke", (req, res) => {
   res.json({ smoke: "test" });
+});
+
+//homepage get request
+app.get("/", (req, res) => {
+  res.render("login");
 });
 
 app.get("/api/users", (req, res) => {

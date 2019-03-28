@@ -53,7 +53,8 @@ passport.use(
 
 //hello world
 router.get("/auth/register", (req, res) => {
-  res.send("hi ho");
+  console.log(req);
+  res.render("register");
 });
 
 const SALT_ROUNT = 12;
@@ -73,7 +74,7 @@ router.post("/auth/register", (req, res) => {
     })
     .then(user => {
       user = user.toJSON();
-      res.json("You have created a new user"); //Never send entire user obj to user
+      res.redirect("/gallery"); //Never send entire user obj to user
       //res.sendStatus(200)
       //res.redirect('/api/auth/secret')
     })
@@ -90,7 +91,7 @@ router.post(
     console.log("checken");
     //grab the user on record
     //compare req.body.password to password on record
-    res.send("YAY IM IN");
+    res.redirect("/gallery");
   }
 );
 

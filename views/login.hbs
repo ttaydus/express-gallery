@@ -1,0 +1,35 @@
+<div id="loginPage">
+    <div id="homeBanner">
+
+        <h1 class="hi" id='loginHi'>The Hall of Heroes</h1>
+    </div>
+    <div id="musashiContain">
+        <img src="https://media.proprofs.com/images/QM/user_images/2169923/1516426900.jpg" alt="musashi" id='musashi'>
+    </div>
+
+    <div id="loginFormContainer">
+        <div id="loginForm">
+
+            <form action="/api/auth/login" method="POST" id="log">
+                <div class="logEntryBox">
+                    <input type="text" name="email" class='boo' id='email2' placeholder="Email">
+                </div>
+                <div class="logEntryBox">
+                    <input type="text" name='password' class='boo' id='password2' placeholder="Password">
+                </div>
+                <div class="loginButtons">
+                    <button id="loginButton">
+                        Login
+                    </button>
+
+                </div>
+            </form>
+            <div class="loginButtons">
+                <button id="getReg" onclick="window.location.href='/api/auth/register'">
+                    Register
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
