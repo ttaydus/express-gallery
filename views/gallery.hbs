@@ -3,8 +3,8 @@
     {{#with featured}}
     <div id="featuredContainer">
         <img id="featured" src="{{url}}" alt="" onclick="window.location.href='/gallery/{{id}}'">
-        <p>By {{author}}</p>
-        <p>{{description}}</p>
+        <p id="textAuthor" class="imageText">~ {{author}} ~</p>
+        <p id="textDescription" class="imageText">"{{description}}"</p>
     </div>
     {{/with}}
 </div>
@@ -15,8 +15,8 @@
     <li>
         <div class="artContainer">
             <img class="images" src="{{url}}" alt="" onclick="window.location.href='/gallery/{{id}}'">
-            <p>By {{author}}</p>
-            <p>{{description}}</p>
+            <p id="textAuthor" class="imageText">~ {{author}} ~</p>
+            <p id="textDescription" class="imageText">"{{description}}"</p>
         </div>
     </li>
     {{/each}}

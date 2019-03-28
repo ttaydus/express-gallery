@@ -1,26 +1,49 @@
+/* banner/navbar */
+
+#hi {
+  /* font-family: 'Abril Fatface', cursive; */
+  font-family: 'Righteous', cursive;
+  /* font-family: 'Bangers', cursive; */
+  /* font-family: 'Ultra', serif; */
+  /* font-family: 'Mrs Sheppards', cursive; */
+  /* font-family: 'Fredericka the Great', cursive; */
+  /* font-family: 'Niconne', cursive; */
+  font-size: 60px;
+  margin: 10px;
+}
+
 #banner {
   background-image: linear-gradient(
     to right,
     rgba(255, 0, 0, 0),
     rgb(110, 104, 104)
   );
-  border: solid black 1px;
-}
-#hi {
-  font-family: "Bangers", cursive;
-  font-size: 40px;
-}
-
-#banner {
   display: flex;
   flex-flow: row;
-  justify-content: center;
+  justify-content: space-around;
+  margin-bottom: 80px;
+  border: none;
 }
 
-#featured {
-  max-width: 500px;
-  height: auto;
+/* featured image */
+
+#featuredContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content:center;
+  align-items: center;
 }
+
+#featured{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  border: 14px solid black;
+  margin-bottom: 20px;
+}
+
+/* sumting */
 
 #wholePage {
   display: flex;
@@ -31,13 +54,61 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: green;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.artContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .images{
-  max-width: 100px;
-  max-height: 100px;
+  display: flex;
+  max-width: 400px;
+  max-height: 400px;
+  align-self: center;
+  align-items: center;
+  border: 14px solid black;
+  margin-bottom: 20px;
+} 
+
+.images:hover{
+  display: flex;
+  max-width: 600px;
+  max-height: 600px;
+  align-self: center;
+  align-items: center;
+  border: 14px solid black;
+  margin-bottom: 20px;
+  transition: 150ms;
+  transition-delay: 10ms;
+} 
+
+.imageText{
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
+  max-width: 400px;
+  max-height: 400px; 
+  font-family: 'Niconne', cursive;
+  font-size: 22px;
 }
+
+#textAuthor{
+  text-align: center;
+  font-size: 26px;
+}
+
+#textDescription{
+  text-align: center;
+}
+
+
 
 body {
   /* background-image: url("https://goldwheel.us/wp-content/uploads/2018/11/CDR-background-1200x624-1200x500.png"); */
