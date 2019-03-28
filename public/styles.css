@@ -85,8 +85,8 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 80px;
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
 }
 
 .images {
@@ -125,10 +125,10 @@
   text-align: center;
   font-size: 26px;
 }
-.images {
+/* .images {
   max-width: 100px;
   max-height: 100px;
-}
+} */
 
 #textDescription {
   text-align: center;
