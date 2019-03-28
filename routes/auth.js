@@ -105,7 +105,7 @@ router.get("/auth/sercret", isAuthenticated, (req, res) => {
   res.send("YOU HAVE FOUND DA SEKRET");
 });
 
-//routes for gallery
+//routes for gallery chee
 router.post("/gallery", isAuthenticated, (req, res) => {
   let data = req.body;
   let author = data.author;
