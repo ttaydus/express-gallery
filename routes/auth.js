@@ -3,7 +3,7 @@ const Users = require("../database/models/User");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
-
+const Artwork = require("../database/models/Artwork");
 passport.serializeUser((user, done) => {
   console.log("serializeUser", user);
   done(null, {
@@ -74,7 +74,7 @@ router.post("/auth/register", (req, res) => {
     })
     .then(user => {
       user = user.toJSON();
-      res.redirect("/gallery"); //Never send entire user obj to user
+      res.redirect("/"); //Never send entire user obj to user
       //res.sendStatus(200)
       //res.redirect('/api/auth/secret')
     })
@@ -88,7 +88,7 @@ router.post(
   "/auth/login",
   passport.authenticate("local", { failureRedirect: "/" }),
   (req, res) => {
-    console.log("checken");
+    console.log("You Have Succesfully Logged In");
     //grab the user on record
     //compare req.body.password to password on record
     res.redirect("/gallery");
@@ -103,6 +103,27 @@ router.post("/auth/logout", (req, res) => {
 
 router.get("/auth/sercret", isAuthenticated, (req, res) => {
   res.send("YOU HAVE FOUND DA SEKRET");
+});
+
+router.post("/gallery", isAuthenticated, (req, res) => {
+  let data = req.body;
+  let author = data.author;
+  let url = data.url;
+  let description = data.description;
+  if (author === "" || description === "" || url === "") {
+    res.redirect("/gallery/errorPosting");
+  } else {
+    return new Artwork({ author, url, description })
+      .save()
+      .then(data => {
+        res.redirect("/gallery");
+        // res.send("it worked");
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  }
 });
 
 function isAuthenticated(req, res, done) {
